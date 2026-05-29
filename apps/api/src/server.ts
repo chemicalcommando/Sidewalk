@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db";
 import { getApiEnv } from "./config/env";
+import { validateAuthEnv } from "@sidewalk/config";
 import { getLiveness, getReadiness } from "./modules/health/health.controller";
 import { stellarService } from "./config/stellar";
 import reportsRoutes from "./modules/reports/reports.routes";
@@ -20,6 +21,7 @@ import { errorHandler, notFoundHandler } from "./core/errors/error-handler";
 import { tieredApiRateLimiter } from "./core/rate-limit/rate-limit.middleware";
 
 dotenv.config();
+validateAuthEnv();
 
 const app = express();
 const env = getApiEnv();
